@@ -1,0 +1,90 @@
+{
+  "stats": {
+    "suites": 0,
+    "tests": 1,
+    "passes": 0,
+    "pending": 0,
+    "failures": 1,
+    "start": "2022-07-18T12:54:58.220Z",
+    "end": "2022-07-18T12:54:59.173Z",
+    "duration": 953,
+    "testsRegistered": 1,
+    "passPercent": 0,
+    "pendingPercent": 0,
+    "other": 0,
+    "hasOther": false,
+    "skipped": 0,
+    "hasSkipped": false
+  },
+  "results": [
+    {
+      "uuid": "6d83c5c6-f405-4a0d-a174-323551678a0b",
+      "title": "",
+      "fullFile": "cypress\\e2e\\spec.cy.js",
+      "file": "cypress\\e2e\\spec.cy.js",
+      "beforeHooks": [],
+      "afterHooks": [],
+      "tests": [
+        {
+          "title": "An uncaught error was detected outside of a test",
+          "fullTitle": "An uncaught error was detected outside of a test",
+          "timedOut": null,
+          "duration": 699,
+          "state": "failed",
+          "speed": null,
+          "pass": false,
+          "fail": true,
+          "pending": false,
+          "context": null,
+          "code": "throw err;",
+          "err": {
+            "message": "TypeError: The following error originated from your test code, not from Cypress.\n\n  > cy.allure is not a function\n\nWhen Cypress detects uncaught errors originating from your test code it will automatically fail the current test.\n\nCypress could not associate this error to any specific test.\n\nWe dynamically generated a new test to display this failure.",
+            "estack": "TypeError: The following error originated from your test code, not from Cypress.\n\n  > cy.allure is not a function\n\nWhen Cypress detects uncaught errors originating from your test code it will automatically fail the current test.\n\nCypress could not associate this error to any specific test.\n\nWe dynamically generated a new test to display this failure.\n    at Suite.eval (http://localhost:58151/__cypress/tests?p=cypress\\e2e\\spec.cy.js:327:6)\n    at Object../cypress/e2e/spec.cy.js (http://localhost:58151/__cypress/tests?p=cypress\\e2e\\spec.cy.js:326:1)\n    at __webpack_require__ (http://localhost:58151/__cypress/tests?p=cypress\\e2e\\spec.cy.js:20:30)\n    at Object.0 (http://localhost:58151/__cypress/tests?p=cypress\\e2e\\spec.cy.js:371:18)\n    at __webpack_require__ (http://localhost:58151/__cypress/tests?p=cypress\\e2e\\spec.cy.js:20:30)\n    at eval (http://localhost:58151/__cypress/tests?p=cypress\\e2e\\spec.cy.js:84:18)\n    at eval (http://localhost:58151/__cypress/tests?p=cypress\\e2e\\spec.cy.js:87:10)\n    at eval (<anonymous>)",
+            "diff": null
+          },
+          "uuid": "6e60578b-4c85-4a4f-adcd-b3631be4178f",
+          "parentUUID": "6d83c5c6-f405-4a0d-a174-323551678a0b",
+          "isHook": false,
+          "skipped": false
+        }
+      ],
+      "suites": [],
+      "passes": [],
+      "failures": [
+        "6e60578b-4c85-4a4f-adcd-b3631be4178f"
+      ],
+      "pending": [],
+      "skipped": [],
+      "duration": 699,
+      "root": true,
+      "rootEmpty": false,
+      "_timeout": 2000
+    }
+  ],
+  "meta": {
+    "mocha": {
+      "version": "7.0.1"
+    },
+    "mochawesome": {
+      "options": {
+        "quiet": false,
+        "reportFilename": "mochawesome",
+        "saveHtml": false,
+        "saveJson": true,
+        "consoleReporter": "spec",
+        "useInlineDiffs": false,
+        "code": true
+      },
+      "version": "7.1.3"
+    },
+    "marge": {
+      "options": {
+        "reportDir": "cypress/results",
+        "overwrite": false,
+        "html": false,
+        "json": true
+      },
+      "version": "6.2.0"
+    }
+  }
+}
