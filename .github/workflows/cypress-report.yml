@@ -1,42 +1,40 @@
 name: Create Cypress report
 on:
     push:
-       branches:
-            - 'master'
+        branches: [master]
+
 jobs:
-  cypress-e2e-chrome81:
-                        name: Run on Chrome 
-                        runs-on: ubuntu-18.04
-                        container: cypress/browsers:node12.16.2-chrome81-ff75
-                        steps:
-
-                        - uses: actions/checkout@v2
-
-                        - name: Install a project with a clean slate
-                          run: |
-                              npm ci
-                              $(npm bin)/cypress cache path
-                              $(npm bin)/cypress cache list
-                              $(npm bin)/cypress verify
-
-                        - name: Run Cypress tests
-                          run: npm run test:chrome
-                          continue-on-error: true
-
-                        - name: Copy test execution videos
-                          run: |
-                           mkdir public
-                            cp -r cypress/videos public/videos
-
-                        - name: Merge test results into one
-                          run: npm run report:merge
-
-                        - name: Generate HTML report
-                          run: npm run report:generate
-                        - name: Deploy report page
-                          uses: peaceiris/actions-gh-pages@v3
-                          with:
-                            github_token: ${{ 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 }}
-                            publish_dir: ./public
-                            user_name: 'github-actions[bot]'
-                            user_email: 'github-actions[bot]@users.noreply.github.com'
+    Run_test:
+        runs-on: ubuntu-20.04 # Choosing OS
+        strategy:
+            matrix:
+                node-version: [14.17.0]
+                # See supported Node.js release schedule at https://nodejs.org/en/about/releases/
+        steps:
+            - uses: actions/checkout@v2
+            - name: Use Node.js ${{ matrix.node-version }}
+              uses: actions/setup-node@v2
+              with:
+                  node-version: ${{ matrix.node-version }}
+                  cache: "npm"
+            - run: npm i npm@latest
+            - run: npm i
+            - name: run test
+              run: npm run cy:run
+            - name: Create Report
+              if: always()
+              run: npm run allure:generate
+            - name: Upload artifact allure-report
+              uses: actions/upload-artifact@v1
+              if: always()
+              with:
+                  name: allure-report
+                  path: ./allure-report
+            - name: Deploy report
+              uses: JamesIves/github-pages-deploy-action@3.1.0
+              if: always()
+              with:
+                  ACCESS_TOKEN: ${{'secrets.ACCESS_TOKEN'}}
+                  BRANCH: master # The branch the action should deploy to.
+                  FOLDER: allure-report # The folder the action should deploy.
+                  TARGET_FOLDER: docs
