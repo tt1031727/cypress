@@ -20,7 +20,7 @@ jobs:
             - run: npm i npm@latest
             - run: npm i
             - name: run test
-              run: npm run cy:run
+              run: npm run test:chrome
             - name: Create Report
               if: always()
               run: npm run allure:generate
